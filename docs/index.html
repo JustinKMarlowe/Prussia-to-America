@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Prussia with Love to America my Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- Header -->
+    <header id="site-header">
+        <div class="header-inner">
+            <div class="title-group">
+                <h1 id="site-title">From Prussia with Love to America my Home</h1>
+                <p id="site-subtitle">The Journey of Beate Zülsdorf, now Beate Owens</p>
+            </div>
+            <div class="header-controls">
+                <button id="lang-toggle" aria-label="Toggle language">
+                    <span class="lang-label" data-active="en">EN</span>
+                    <span class="lang-divider">/</span>
+                    <span class="lang-label" data-active="">DE</span>
+                </button>
+                <button id="info-btn" aria-label="About">?</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dedication Modal (shows on first visit) -->
+    <div id="dedication-modal" class="modal">
+        <div class="modal-content">
+            <button id="close-dedication" class="modal-close">&times;</button>
+            <h2 id="dedication-title">Dedication</h2>
+            <div id="dedication-body">
+                <p>I dedicate this autobiography to my children—Kristiana, James Roy, and Liliana—and to my grandchildren—Brandon, Justin, Kaliana, Zachary, Gavin Kai, and Piper Rae. May these pages always remind you of our European roots and bring you joy as you learn about our family’s history. Be proud of your German heritage.</p>
+                <p>The Nazis tried to destroy our homeland and its values, but they failed. After the devastation of World War II, Germany rebuilt itself and once again became a respected nation known for its scientists, doctors, writers, poets, and world-class universities—especially in medicine. You can hold your head high as Germans, just as I always have.</p>
+                <p>I write these memoirs in my own words, to the best of my recollection…</p>
+                <p><strong>Pronunciation guide:</strong> Mutti = Moot-tee | Papa = Pop-pah | Opa = Oh-pah | Oma = Oh-mah</p>
+            </div>
+            <div style="margin-top:24px; text-align:center;">
+                <button id="surname-history-btn" class="modal-button">View the history of the surname Zülsdorf</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Surname History Modal -->
+    <div id="surname-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-surname" class="modal-close">&times;</button>
+            <h2 id="surname-title">The Surname Zülsdorf</h2>
+            <p>The surname <strong>Zülsdorf</strong> is of German origin and is a classic toponymic (place-based) name. It most likely refers to a village or farmstead (“-dorf”) associated with the root “Züls” / “Zül” in historic German-speaking regions. It is most common in Germany today (especially the Hamburg area) and was historically concentrated in West Prussia and Mecklenburg.</p>
+            <p><strong>Common variant spellings:</strong> Zulsdorf, Zuelsdorf, Zuhlsdorf, Zielsdorf, Zeulsdorf.</p>
+            <p>The family’s roots trace to the Prussian farming regions that are now part of modern Poland and eastern Germany. The name reflects the deep agricultural heritage of the Zülsdorf line before the upheavals of the 20th century.</p>
+        </div>
+    </div>
+
+    <!-- About Modal (unchanged except language keys) -->
+    <div id="about-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-about" class="modal-close">&times;</button>
+            <h2 id="about-title">About This Project</h2>
+            <p id="about-text">This interactive map traces the remarkable life journey of Beate Zülsdorf (later Beate Owens), from her birth in West Prussia in 1941, through the harrowing evacuation during World War II, her childhood in Soviet-occupied East Germany, escape to West Germany, and eventual immigration to America in 1963 where she became a Pan American World Airways stewardess. Click on any location marker or timeline entry to read that chapter of her story.</p>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div id="app">
+        <!-- Timeline Sidebar -->
+        <aside id="timeline-panel">
+            <div class="timeline-header">
+                <h2 id="timeline-title">Timeline</h2>
+            </div>
+            <div id="timeline-list"></div>
+        </aside>
+
+        <!-- Map -->
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+
+        <!-- Story Panel -->
+        <div id="story-panel" class="hidden">
+            <button id="close-story" class="story-close">&times;</button>
+            <div id="story-content">
+                <span class="story-date" id="story-date"></span>
+                <h2 id="story-title"></h2>
+                <div id="story-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Timeline Toggle -->
+    <button id="timeline-toggle" aria-label="Toggle timeline">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="2" rx="1" fill="currentColor"/><rect x="2" y="9" width="16" height="2" rx="1" fill="currentColor"/><rect x="2" y="15" width="16" height="2" rx="1" fill="currentColor"/></svg>
+    </button>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="story-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
