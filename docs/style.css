@@ -192,6 +192,95 @@ html, body {
     cursor: pointer;
 }
 
+/* ---- Dedication Modal ---- */
+.dedication-content {
+    max-width: 620px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 36px 40px 32px;
+}
+
+.dedication-heading {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-accent-dark);
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+}
+
+.dedication-text {
+    font-size: 0.93rem;
+    line-height: 1.75;
+    color: var(--color-text);
+    margin-bottom: 14px;
+    text-align: left;
+}
+
+.dedication-memoir-note {
+    font-style: italic;
+    color: var(--color-text-muted);
+}
+
+.pronunciation-guide {
+    background: var(--color-bg-dark);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin-top: 8px;
+}
+
+.pronunciation-guide strong {
+    color: var(--color-accent-dark);
+}
+
+.dedication-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 20px 0 16px;
+}
+
+.surname-section {
+    margin-top: 4px;
+}
+
+.surname-toggle {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    cursor: pointer;
+    padding: 8px 0;
+    list-style: none;
+    user-select: none;
+}
+
+.surname-toggle::-webkit-details-marker {
+    display: none;
+}
+
+.surname-toggle:hover {
+    color: var(--color-accent-dark);
+}
+
+.surname-body {
+    margin-top: 12px;
+}
+
+.surname-body p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--color-text);
+    margin-bottom: 10px;
+}
+
+.surname-body em {
+    color: var(--color-accent-dark);
+}
+
 /* ---- App Layout ---- */
 #app {
     display: flex;
@@ -265,6 +354,19 @@ html, body {
     border-left-color: var(--color-accent);
 }
 
+/* Timeline section divider */
+.timeline-section-divider {
+    padding: 10px 20px 4px 16px;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-accent-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--color-border);
+    margin-top: 4px;
+}
+
 /* Timeline numbered circle (matches map marker number) */
 .timeline-number {
     width: 26px;
@@ -286,6 +388,15 @@ html, body {
 .timeline-item.active .timeline-number {
     background: var(--color-accent);
     transform: scale(1.15);
+}
+
+/* Family background markers use a different color */
+.timeline-number.family {
+    background: #7a6e5f;
+}
+
+.timeline-item.active .timeline-number.family {
+    background: var(--color-gold);
 }
 
 .timeline-info {
@@ -359,6 +470,15 @@ html, body {
     background: var(--color-accent);
     transform: rotate(-45deg) scale(1.25);
     z-index: 999 !important;
+}
+
+.marker-pin.family-marker {
+    background: #7a6e5f;
+    border-color: rgba(184, 134, 11, 0.6);
+}
+
+.marker-pin.family-marker.active {
+    background: var(--color-gold);
 }
 
 .marker-tooltip {
@@ -615,6 +735,10 @@ html, body {
         --timeline-width: 260px;
         --story-width: 380px;
     }
+
+    .title-group h1 {
+        font-size: 1.3rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -625,7 +749,7 @@ html, body {
     }
 
     .title-group h1 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .title-group p {
@@ -658,6 +782,11 @@ html, body {
         font-size: 0.65rem;
         max-width: 200px;
         white-space: normal;
+    }
+
+    .dedication-content {
+        max-width: 95%;
+        padding: 24px 20px;
     }
 }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>From Prussia with Love — The Journey of Beate Zülsdorf</title>
+    <title>From Prussia with Love to America my Home — The Journey of Beate Zülsdorf, now Beate Owens</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
@@ -11,12 +11,38 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <!-- Dedication Modal (shows on first load) -->
+    <div id="dedication-modal" class="modal">
+        <div class="modal-content dedication-content">
+            <button id="close-dedication" class="modal-close">&times;</button>
+            <h2 class="dedication-heading">Dedication</h2>
+            <p class="dedication-text">I dedicate this autobiography to my children—Kristiana, James Roy, and Liliana—and to my grandchildren—Brandon, Justin, Kaliana, Zachary, Gavin Kai, and Piper Rae. May these pages always remind you of our European roots and bring you joy as you learn about our family's history. Be proud of your German heritage.</p>
+            <p class="dedication-text">The Nazis tried to destroy our homeland and its values, but they failed. After the devastation of World War II, Germany rebuilt itself and once again became a respected nation known for its scientists, doctors, writers, poets, and world-class universities—especially in medicine. You can hold your head high as Germans, just as I always have.</p>
+            <p class="dedication-text dedication-memoir-note">I write these memoirs in my own words, to the best of my recollection, drawing from my experiences and stories shared by my mother, grandfather, and brother Georg. German is my mother tongue, so please forgive any imperfections in my English spelling or grammar.</p>
+            <div class="pronunciation-guide">
+                <strong>Pronunciation guide for German names</strong><br>
+                Mutti (Mom) = Moot-tee &nbsp;|&nbsp; Papa (Dad) = Pop-pah<br>
+                Opa (Grandpa) = Oh-pah &nbsp;|&nbsp; Oma (Grandma) = Oh-mah
+            </div>
+            <hr class="dedication-divider">
+            <details id="surname-history" class="surname-section">
+                <summary class="surname-toggle">History of the Zülsdorf Surname ▾</summary>
+                <div class="surname-body">
+                    <p><strong>Origin:</strong> The surname <em>Zülsdorf</em> is a German toponymic (place-based) name, meaning it derives from a place called Zülsdorf or a similar settlement. The name combines a personal name element (likely from the Old German name <em>Sulo</em> or <em>Zule</em>) with <em>-dorf</em>, meaning "village." It essentially means "Zule's village" or "village of Zulo's people."</p>
+                    <p><strong>Geographic roots:</strong> The name is strongly associated with eastern German territories — Saxony, Brandenburg, Silesia, Pomerania, and Prussia. There is a village called Zülsdorf near Altenburg in Thuringia, and similar place names appear across the former Prussian provinces. After 1945, many families bearing this name were displaced westward during the expulsions from territories east of the Oder-Neisse line.</p>
+                    <p><strong>Alternative spellings:</strong> Zuelsdorf, Zühlsdorf, Zuehlsdorf, Zülstorf, Zulsdorf, Zuhlsdorf, Zilsdorf, Zeulsdorf</p>
+                    <p><strong>Earliest records:</strong> Variants appear in church and land records from the 13th–14th centuries in Saxony and Brandenburg. The spelling stabilized in its modern form during the 17th–18th centuries.</p>
+                </div>
+            </details>
+        </div>
+    </div>
+
     <!-- Header -->
     <header id="site-header">
         <div class="header-inner">
             <div class="title-group">
-                <h1 id="site-title">From Prussia with Love</h1>
-                <p id="site-subtitle">The Journey of Beate Zülsdorf</p>
+                <h1 id="site-title">From Prussia with Love to America my Home</h1>
+                <p id="site-subtitle">The Journey of Beate Zülsdorf, now Beate Owens</p>
             </div>
             <div class="header-controls">
                 <button id="lang-toggle" aria-label="Toggle language">

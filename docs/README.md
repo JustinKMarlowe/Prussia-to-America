@@ -1,4 +1,4 @@
-# From Prussia with Love
+# From Prussia with Love to America my Home
 
 An interactive map tracing the life journey of Beate Zülsdorf (later Beate Owens).
 
@@ -6,6 +6,7 @@ An interactive map tracing the life journey of Beate Zülsdorf (later Beate Owen
 
 | Historical Name              | Modern Name                                      | Country |
 |------------------------------|--------------------------------------------------|---------|
+| Rosenfelde                   | Now part of Poland                               | Poland |
 | Schneidemühl                 | Piła                                             | Poland |
 | Breitenstein (West Prussia)  | Dobino (near Piła)                               | Poland |
 | Märkisch Friedland           | Mirosławiec                                      | Poland |

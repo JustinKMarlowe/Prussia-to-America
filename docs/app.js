@@ -31,6 +31,16 @@
   const closeStory = $("#close-story");
   const timelineToggle = $("#timeline-toggle");
   const timelinePanel = $("#timeline-panel");
+  const dedicationModal = $("#dedication-modal");
+  const closeDedication = $("#close-dedication");
+
+  // ---- Dedication Modal ----
+  closeDedication.addEventListener("click", () => {
+    dedicationModal.classList.add("hidden");
+  });
+  dedicationModal.addEventListener("click", (e) => {
+    if (e.target === dedicationModal) dedicationModal.classList.add("hidden");
+  });
 
   // ---- Initialize Map ----
   function initMap() {
@@ -66,8 +76,7 @@
     // Default basemap
     baseLayers.light.addTo(map);
 
-    // ---- Historical overlay (German WW2-era labels via Mapire/OldMapsOnline Messtischblätter) ----
-    // Uses NLS/David Rumsey historical overlay showing German-era placenames in Central Europe
+    // ---- Historical overlay ----
     historicalOverlay = L.tileLayer(
       "https://maps.georeferencer.com/georeferences/28da2318-c4b3-5f25-a4f0-3d3b8e1210a1/2022-08-25T12:25:57.721924Z/map/{z}/{x}/{y}.png?key=mpIMvCWIYHCcIFEqLGfx",
       {
@@ -75,11 +84,11 @@
         opacity: 0.6,
         maxZoom: 15,
         minZoom: 5,
-        bounds: [[47, 5], [56, 25]], // Central Europe only
+        bounds: [[47, 5], [56, 25]],
       }
     );
 
-    // Draw journey path — subtle dotted brown line showing overall route
+    // Draw journey path
     journeyLine = L.polyline(JOURNEY_PATH, {
       color: "#8b4513",
       weight: 2.5,
@@ -93,10 +102,13 @@
       const markerLat = story.displayLat || story.lat;
       const markerLng = story.displayLng || story.lng;
       const isOffset = !!(story.displayLat || story.displayLng);
+      const isFamily = story.section === "family";
+      const num = idx + 1;
 
+      const familyClass = isFamily ? " family-marker" : "";
       const icon = L.divIcon({
         className: "custom-marker",
-        html: `<div class="marker-pin" data-id="${story.id}"><span class="marker-number">${idx + 1}</span></div>`,
+        html: `<div class="marker-pin${familyClass}" data-id="${story.id}"><span class="marker-number">${num}</span></div>`,
         iconSize: [28, 28],
         iconAnchor: [14, 28],
         popupAnchor: [0, -30],
@@ -117,22 +129,18 @@
       marker.on("click", () => selectStory(story.id));
       markers.push(marker);
 
-      // Leader lines: SOLID bright orange with white halo
-      // Visually distinct from the journey path (which is dotted brown)
+      // Leader lines for offset markers
       if (isOffset) {
-        // Wide white halo for contrast on any basemap including satellite
         const lineHalo = L.polyline(
           [[markerLat, markerLng], [story.lat, story.lng]],
           { color: "#ffffff", weight: 5, opacity: 0.95, lineCap: "round" }
         ).addTo(map);
 
-        // Core: solid bright orange, no dash
         const lineCore = L.polyline(
           [[markerLat, markerLng], [story.lat, story.lng]],
           { color: "#e85d26", weight: 2.5, opacity: 1.0, lineCap: "round" }
         ).addTo(map);
 
-        // Target dot at real location: white ring + orange fill
         const dot = L.circleMarker([story.lat, story.lng], {
           radius: 6,
           color: "#ffffff",
@@ -149,7 +157,7 @@
     initLayerControl();
   }
 
-  // ---- Layer Control (basemap + historical overlay) ----
+  // ---- Layer Control ----
   function initLayerControl() {
     const LayerControl = L.Control.extend({
       options: { position: "topright" },
@@ -202,20 +210,17 @@
       panel.classList.toggle("hidden");
     });
 
-    // Basemap radios
     document.querySelectorAll('input[name="basemap"]').forEach((radio) => {
       radio.addEventListener("change", (e) => {
         const val = e.target.value;
         Object.values(baseLayers).forEach((l) => map.removeLayer(l));
         baseLayers[val].addTo(map);
-        // Keep historical overlay on top if active
         if (historicalVisible && map.hasLayer(historicalOverlay)) {
           historicalOverlay.bringToFront();
         }
       });
     });
 
-    // Historical overlay checkbox
     document.getElementById("historical-toggle").addEventListener("change", (e) => {
       historicalVisible = e.target.checked;
       if (historicalVisible) {
@@ -230,13 +235,11 @@
     const panel = document.getElementById("layer-panel");
     const toggleBtn = document.getElementById("layer-toggle-btn");
     if (!panel || !toggleBtn) return;
-    // Rebuild the inner HTML while preserving checked states
     const basemapVal = document.querySelector('input[name="basemap"]:checked')?.value || "light";
     const histChecked = document.getElementById("historical-toggle")?.checked || false;
     const container = document.querySelector(".layer-control");
     if (container) {
       container.innerHTML = buildLayerControlHTML();
-      // Restore states
       const radio = container.querySelector(`input[name="basemap"][value="${basemapVal}"]`);
       if (radio) radio.checked = true;
       const hist = container.querySelector("#historical-toggle");
@@ -248,13 +251,31 @@
   // ---- Build Timeline ----
   function buildTimeline() {
     timelineList.innerHTML = "";
+    const s = UI_STRINGS[currentLang];
+
+    let lastSection = null;
+
     STORY_DATA.forEach((story, idx) => {
+      const section = story.section || "journey";
+
+      // Add section divider when section changes
+      if (section !== lastSection) {
+        const divider = document.createElement("div");
+        divider.className = "timeline-section-divider";
+        divider.textContent = section === "family"
+          ? s.timelineFamilySection
+          : s.timelineJourneySection;
+        timelineList.appendChild(divider);
+        lastSection = section;
+      }
+
       const num = idx + 1;
+      const isFamily = section === "family";
       const item = document.createElement("div");
       item.className = "timeline-item";
       item.dataset.id = story.id;
       item.innerHTML = `
-        <div class="timeline-number">${num}</div>
+        <div class="timeline-number${isFamily ? ' family' : ''}">${num}</div>
         <div class="timeline-info">
           <div class="timeline-date">${story.date[currentLang]}</div>
           <div class="timeline-label">${story.title[currentLang]}</div>
@@ -275,7 +296,7 @@
     // Update story panel
     storyDate.textContent = story.date[currentLang];
     storyTitle.textContent = story.title[currentLang];
-    storyBody.innerHTML = story.body[currentLang];
+    storyBody.innerHTML = story.body[currentLang] || story.body["en"] || "";
     storyPanel.classList.remove("hidden");
 
     // Initialize placename tooltips
@@ -286,7 +307,7 @@
 
     // Update timeline active state
     document.querySelectorAll(".timeline-item").forEach((el) => {
-      el.classList.toggle("active", parseInt(el.dataset.id) === id);
+      el.classList.toggle("active", el.dataset.id == id);
     });
 
     // Scroll timeline item into view
@@ -303,7 +324,7 @@
       }
     });
 
-    // Pan map to the real location (not offset)
+    // Pan map to the real location
     map.flyTo([story.lat, story.lng], getZoomForStory(story), {
       duration: 1.2,
     });
@@ -313,17 +334,23 @@
   }
 
   function getZoomForStory(story) {
+    // South America
+    if (story.lat < 0) return 6;
+    // Central Europe close-ups
     if (story.lat > 50 && story.lng > 10 && story.lng < 17) return 8;
     if (story.lat > 47 && story.lat < 50 && story.lng > 7 && story.lng < 12) return 8;
+    // Spain
     if (story.lat > 40 && story.lat < 42 && story.lng > 0) return 8;
+    // US East Coast detail
     if (story.lat > 38 && story.lng < -70) return 10;
+    // Caribbean
+    if (story.lat > 15 && story.lat < 25 && story.lng < -60) return 8;
     return 6;
   }
 
   // ---- Placename Tooltips ----
   function initPlacenameTooltips() {
     document.querySelectorAll("#story-body .placename").forEach((el) => {
-      // tooltip already attached
       if (el.dataset.initialized) return;
       el.dataset.initialized = "true";
 
@@ -404,7 +431,6 @@
     timelinePanel.classList.toggle("open");
   });
 
-  // Close timeline on map click (mobile)
   document.getElementById("map").addEventListener("click", () => {
     timelinePanel.classList.remove("open");
   });
@@ -414,6 +440,7 @@
     if (e.key === "Escape") {
       closeStoryPanel();
       aboutModal.classList.add("hidden");
+      dedicationModal.classList.add("hidden");
     }
   });
 
