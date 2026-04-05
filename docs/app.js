@@ -329,6 +329,9 @@
       duration: 1.2,
     });
 
+    // Update year bar
+    updateYearBar(story);
+
     // Close mobile timeline
     timelinePanel.classList.remove("open");
   }
@@ -372,6 +375,7 @@
       const pin = m.getElement()?.querySelector(".marker-pin");
       if (pin) pin.classList.remove("active");
     });
+    updateYearBar(null);
   }
 
   // ---- Language Toggle ----
@@ -447,4 +451,94 @@
   // ---- Init ----
   initMap();
   buildTimeline();
+  buildYearBar();
+
+  // ---- Year Timeline Bar ----
+  function buildYearBar() {
+    const labelsContainer = $("#year-bar-labels");
+    labelsContainer.innerHTML = "";
+
+    // Determine range from story data (earliest family to latest journey)
+    const MIN_YEAR = 1836;
+    const MAX_YEAR = 1965;
+
+    // Collect which years have stories
+    const storyYears = new Set();
+    STORY_DATA.forEach((s) => {
+      for (let y = s.yearStart; y <= s.yearEnd; y++) {
+        storyYears.add(y);
+      }
+    });
+
+    // Generate labels — show every 5 years for readability, but mark decade years more prominently
+    const years = [];
+    for (let y = MIN_YEAR; y <= MAX_YEAR; y += 5) {
+      years.push(y);
+    }
+    // Ensure MAX_YEAR is included
+    if (years[years.length - 1] !== MAX_YEAR) {
+      years.push(MAX_YEAR);
+    }
+
+    years.forEach((y) => {
+      const label = document.createElement("span");
+      label.className = "year-label";
+      if (storyYears.has(y)) label.classList.add("has-story");
+      label.dataset.year = y;
+      label.innerHTML = `<span class="year-dot"></span>${y}`;
+      label.addEventListener("click", () => {
+        // Find the first story that covers this year
+        const match = STORY_DATA.find((s) => y >= s.yearStart && y <= s.yearEnd);
+        if (match) selectStory(match.id);
+      });
+      labelsContainer.appendChild(label);
+    });
+
+    // Store range for updates
+    labelsContainer.dataset.minYear = MIN_YEAR;
+    labelsContainer.dataset.maxYear = MAX_YEAR;
+  }
+
+  function updateYearBar(story) {
+    if (!story) {
+      // Clear active states
+      document.querySelectorAll(".year-label").forEach((el) => {
+        el.classList.remove("active", "near");
+      });
+      const fill = $("#year-bar-fill");
+      if (fill) {
+        fill.style.left = "0%";
+        fill.style.width = "0%";
+      }
+      return;
+    }
+
+    const MIN_YEAR = 1836;
+    const MAX_YEAR = 1965;
+    const range = MAX_YEAR - MIN_YEAR;
+
+    // Compute the midpoint year of the active story
+    const midYear = Math.round((story.yearStart + story.yearEnd) / 2);
+
+    // Update fill bar position
+    const fillLeft = ((story.yearStart - MIN_YEAR) / range) * 100;
+    const fillWidth = Math.max(((story.yearEnd - story.yearStart + 1) / range) * 100, 0.8);
+    const fill = $("#year-bar-fill");
+    if (fill) {
+      fill.style.left = fillLeft + "%";
+      fill.style.width = fillWidth + "%";
+    }
+
+    // Update label states
+    document.querySelectorAll(".year-label").forEach((el) => {
+      const y = parseInt(el.dataset.year);
+      el.classList.remove("active", "near");
+
+      if (y >= story.yearStart && y <= story.yearEnd) {
+        el.classList.add("active");
+      } else if (Math.abs(y - midYear) <= 7) {
+        el.classList.add("near");
+      }
+    });
+  }
 })();

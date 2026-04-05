@@ -10,6 +10,7 @@ const STORY_DATA = [
   {
     id: "family-oma",
     section: "family",
+    yearStart: 1836, yearEnd: 1936,
     date: { en: "1836 – Feb 2, 1936", de: "1836 – 2. Februar 1936" },
     title: { en: "Oma — Maria Schmidt", de: "Oma — Maria Schmidt" },
     location: { en: "Rosenfelde, West Prussia (now Poland)", de: "Rosenfelde, Westpreußen (heute Polen)" },
@@ -23,6 +24,7 @@ const STORY_DATA = [
   {
     id: "family-opa",
     section: "family",
+    yearStart: 1860, yearEnd: 1945,
     date: { en: "~1860s – after 1945", de: "~1860er – nach 1945" },
     title: { en: "Opa — Paul Schmidt, Headmaster", de: "Opa — Paul Schmidt, Schulleiter" },
     location: { en: "Rosenfelde, West Prussia (now Poland)", de: "Rosenfelde, Westpreußen (heute Polen)" },
@@ -38,6 +40,7 @@ const STORY_DATA = [
   {
     id: "family-mutti",
     section: "family",
+    yearStart: 1897, yearEnd: 1960,
     date: { en: "Dec 22, 1897 – Aug 11, 1960", de: "22. Dez. 1897 – 11. Aug. 1960" },
     title: { en: "Mutti — Anna Rosa (Schmidt) Zülsdorf", de: "Mutti — Anna Rosa (Schmidt) Zülsdorf" },
     location: { en: "Born Rosenfelde; later Berlin, Munich", de: "Geb. Rosenfelde; später Berlin, München" },
@@ -51,6 +54,7 @@ const STORY_DATA = [
   {
     id: "family-papa",
     section: "family",
+    yearStart: 1902, yearEnd: 1945,
     date: { en: "Aug 24, 1902 – MIA ~1945", de: "24. Aug. 1902 – vermisst ~1945" },
     title: { en: "Papa — Maximilian Augustin Zülsdorf", de: "Papa — Maximilian Augustin Zülsdorf" },
     location: { en: "Breitenstein, West Prussia (near Piła, Poland)", de: "Breitenstein, Westpreußen (bei Piła, Polen)" },
@@ -67,6 +71,7 @@ const STORY_DATA = [
   // ---- BEATE'S JOURNEY ----
   {
     id: 1,
+    yearStart: 1941, yearEnd: 1941,
     date: { en: "April 17, 1941", de: "17. April 1941" },
     title: { en: "Birth in Schneidemühl", de: "Geburt in Schneidemühl" },
     location: { en: "Piła, Poland (formerly Schneidemühl, West Prussia)", de: "Piła, Polen (ehem. Schneidemühl, Westpreußen)" },
@@ -79,6 +84,7 @@ const STORY_DATA = [
   },
   {
     id: 2,
+    yearStart: 1941, yearEnd: 1944,
     date: { en: "1941–1944", de: "1941–1944" },
     title: { en: "Childhood on the Farm in Breitenstein", de: "Kindheit auf dem Bauernhof in Breitenstein" },
     location: { en: "Breitenstein, West Prussia (near Piła, Poland)", de: "Breitenstein, Westpreußen (bei Piła, Polen)" },
@@ -91,6 +97,7 @@ const STORY_DATA = [
   },
   {
     id: 3,
+    yearStart: 1944, yearEnd: 1944,
     date: { en: "Autumn 1944", de: "Herbst 1944" },
     title: { en: "Father Drafted — Last Goodbye", de: "Vater eingezogen — Letzter Abschied" },
     location: { en: "Breitenstein, West Prussia (near Piła, Poland)", de: "Breitenstein, Westpreußen (bei Piła, Polen)" },
@@ -105,6 +112,7 @@ const STORY_DATA = [
   },
   {
     id: 4,
+    yearStart: 1945, yearEnd: 1945,
     date: { en: "February 1945", de: "Februar 1945" },
     title: { en: "Evacuation — The Trek West", de: "Evakuierung — Der Treck nach Westen" },
     location: { en: "From Breitenstein to Moltzahn (approx. 200 miles west)", de: "Von Breitenstein nach Moltzahn (ca. 320 km westlich)" },
@@ -117,6 +125,7 @@ const STORY_DATA = [
   },
   {
     id: 5,
+    yearStart: 1945, yearEnd: 1945,
     date: { en: "March–May 1945", de: "März–Mai 1945" },
     title: { en: "Russian Occupation — Terror in Moltzahn", de: "Russische Besatzung — Terror in Moltzahn" },
     location: { en: "Moltzahn, Mecklenburg-Vorpommern, Germany", de: "Moltzahn, Mecklenburg-Vorpommern, Deutschland" },
@@ -129,6 +138,7 @@ const STORY_DATA = [
   },
   {
     id: 6,
+    yearStart: 1945, yearEnd: 1953,
     date: { en: "1945–1953", de: "1945–1953" },
     title: { en: "Life in the Schoolhouse — Moltzahn", de: "Leben im Schulhaus — Moltzahn" },
     location: { en: "Moltzahn, Mecklenburg-Vorpommern, Germany", de: "Moltzahn, Mecklenburg-Vorpommern, Deutschland" },
@@ -143,6 +153,7 @@ const STORY_DATA = [
   },
   {
     id: 7,
+    yearStart: 1948, yearEnd: 1952,
     date: { en: "1948–1952", de: "1948–1952" },
     title: { en: "Farm Life in Buschmühl", de: "Bauernhofleben in Buschmühl" },
     location: { en: "Buschmühl, near Demmin, Mecklenburg-Vorpommern, Germany", de: "Buschmühl, bei Demmin, Mecklenburg-Vorpommern, Deutschland" },
@@ -157,6 +168,7 @@ const STORY_DATA = [
   },
   {
     id: 8,
+    yearStart: 1953, yearEnd: 1953,
     date: { en: "Autumn 1953", de: "Herbst 1953" },
     title: { en: "Escape to West Germany", de: "Flucht nach Westdeutschland" },
     location: { en: "Berlin → Schweix, Rhineland-Palatinate, Germany", de: "Berlin → Schweix, Rheinland-Pfalz, Deutschland" },
@@ -169,6 +181,7 @@ const STORY_DATA = [
   },
   {
     id: 9,
+    yearStart: 1953, yearEnd: 1953,
     date: { en: "December 1953", de: "Dezember 1953" },
     title: { en: "New Life in Schweix", de: "Neues Leben in Schweix" },
     location: { en: "Schweix, Rhineland-Palatinate, West Germany", de: "Schweix, Rheinland-Pfalz, Westdeutschland" },
@@ -181,6 +194,7 @@ const STORY_DATA = [
   },
   {
     id: 10,
+    yearStart: 1957, yearEnd: 1960,
     date: { en: "1957–1960", de: "1957–1960" },
     title: { en: "Munich: Nursing Training and Loss", de: "München: Krankenpflege-Ausbildung und Verlust" },
     location: { en: "Munich, Bavaria, Germany", de: "München, Bayern, Deutschland" },
@@ -193,6 +207,7 @@ const STORY_DATA = [
   },
   {
     id: 11,
+    yearStart: 1962, yearEnd: 1962,
     date: { en: "Summer 1962", de: "Sommer 1962" },
     title: { en: "Vacation on the Costa Brava, Spain", de: "Urlaub an der Costa Brava, Spanien" },
     location: { en: "Costa Brava, Spain", de: "Costa Brava, Spanien" },
@@ -205,6 +220,7 @@ const STORY_DATA = [
   },
   {
     id: 12,
+    yearStart: 1963, yearEnd: 1963,
     date: { en: "May 1, 1963", de: "1. Mai 1963" },
     title: { en: "Departure — SS United States from Bremerhaven", de: "Abfahrt — SS United States ab Bremerhaven" },
     location: { en: "Bremerhaven, Germany", de: "Bremerhaven, Deutschland" },
@@ -217,6 +233,7 @@ const STORY_DATA = [
   },
   {
     id: 13,
+    yearStart: 1963, yearEnd: 1963,
     date: { en: "May 7, 1963", de: "7. Mai 1963" },
     title: { en: "Arrival in America — New York Harbor", de: "Ankunft in Amerika — New Yorker Hafen" },
     location: { en: "New York Harbor, New York, USA", de: "New Yorker Hafen, New York, USA" },
@@ -229,6 +246,7 @@ const STORY_DATA = [
   },
   {
     id: 14,
+    yearStart: 1964, yearEnd: 1964,
     date: { en: "1964", de: "1964" },
     title: { en: "Life in Manhattan", de: "Leben in Manhattan" },
     location: { en: "Manhattan, New York, USA", de: "Manhattan, New York, USA" },
@@ -243,6 +261,7 @@ const STORY_DATA = [
   },
   {
     id: 15,
+    yearStart: 1964, yearEnd: 1964,
     date: { en: "December 1964", de: "Dezember 1964" },
     title: { en: "Pan Am Stewardess Training", de: "Pan Am Stewardess-Ausbildung" },
     location: { en: "Idlewild (JFK) Airport, New York, USA", de: "Idlewild (JFK) Flughafen, New York, USA" },
@@ -257,6 +276,7 @@ const STORY_DATA = [
   },
   {
     id: 16,
+    yearStart: 1965, yearEnd: 1965,
     date: { en: "1965", de: "1965" },
     title: { en: "Flying the Caribbean & South America", de: "Flüge in die Karibik & Südamerika" },
     location: { en: "San Juan, Puerto Rico & Caribbean", de: "San Juan, Puerto Rico & Karibik" },
@@ -269,6 +289,7 @@ const STORY_DATA = [
   },
   {
     id: 17,
+    yearStart: 1965, yearEnd: 1965,
     date: { en: "1965", de: "1965" },
     title: { en: "Rio de Janeiro — Favorite City", de: "Rio de Janeiro — Lieblingsstadt" },
     location: { en: "Rio de Janeiro, Brazil", de: "Rio de Janeiro, Brasilien" },
@@ -281,6 +302,7 @@ const STORY_DATA = [
   },
   {
     id: 18,
+    yearStart: 1965, yearEnd: 1965,
     date: { en: "Late 1965", de: "Ende 1965" },
     title: { en: "Transfer to San Francisco", de: "Versetzung nach San Francisco" },
     location: { en: "San Francisco / San Mateo, California, USA", de: "San Francisco / San Mateo, Kalifornien, USA" },

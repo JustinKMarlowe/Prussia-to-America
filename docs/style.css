@@ -704,6 +704,108 @@ html, body {
     margin-bottom: 0;
 }
 
+/* ---- Year Timeline Bar ---- */
+#year-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: linear-gradient(0deg, rgba(44,36,22,0.88) 0%, rgba(44,36,22,0.72) 70%, rgba(44,36,22,0) 100%);
+    z-index: 800;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 24px 6px;
+    pointer-events: none;
+}
+
+#year-bar-track {
+    position: relative;
+    height: 3px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    margin-bottom: 4px;
+}
+
+#year-bar-fill {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: var(--color-gold);
+    border-radius: 2px;
+    transition: left 0.5s ease, width 0.5s ease;
+    box-shadow: 0 0 8px rgba(184,134,11,0.5);
+}
+
+#year-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    height: 22px;
+}
+
+.year-label {
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: font-size 0.35s ease, color 0.35s ease, transform 0.35s ease, font-weight 0.2s ease;
+    transform-origin: center bottom;
+    line-height: 1;
+    position: relative;
+    text-align: center;
+    min-width: 0;
+    flex-shrink: 1;
+    user-select: none;
+}
+
+.year-label:hover {
+    color: rgba(255,255,255,0.7);
+}
+
+.year-label.active {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(184,134,11,0.4);
+}
+
+.year-label.near {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+}
+
+.year-label .year-dot {
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: background 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.year-label.active .year-dot {
+    background: var(--color-gold);
+    width: 6px;
+    height: 6px;
+    top: -8px;
+    box-shadow: 0 0 6px rgba(184,134,11,0.6);
+}
+
+.year-label.has-story .year-dot {
+    background: rgba(255,255,255,0.45);
+}
+
 /* ---- Mobile Timeline Toggle ---- */
 #timeline-toggle {
     display: none;
@@ -787,6 +889,19 @@ html, body {
     .dedication-content {
         max-width: 95%;
         padding: 24px 20px;
+    }
+
+    #year-bar {
+        height: 40px;
+        padding: 0 12px 4px;
+    }
+
+    .year-label {
+        font-size: 0.5rem;
+    }
+
+    .year-label.active {
+        font-size: 0.75rem;
     }
 }
 
