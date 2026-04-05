@@ -348,7 +348,7 @@ const UI_STRINGS = {
     aboutText: "This interactive map traces the remarkable life journey of Beate Zülsdorf (later Beate Owens), from her birth in West Prussia in 1941 through WWII evacuation, life in Soviet-occupied East Germany, escape to West Germany, and immigration to America in 1963 as a Pan American World Airways stewardess. Click any marker or timeline entry to read that chapter. Hover over highlighted place names for historical → modern name mapping.",
     basemapLight: "Light Map",
     basemapSatellite: "Satellite",
-    historicalOverlay: "Historical Names (1930s–40s)",
+    historicalBorders: "Historical Borders",
     layers: "Layers"
   },
   de: {
@@ -361,7 +361,7 @@ const UI_STRINGS = {
     aboutText: "Diese interaktive Karte zeichnet die bemerkenswerte Lebensreise von Beate Zülsdorf (später Beate Owens) nach — von ihrer Geburt in Westpreußen 1941 über die Evakuierung im Zweiten Weltkrieg, ihre Kindheit im sowjetisch besetzten Ostdeutschland, die Flucht nach Westdeutschland und die Einwanderung nach Amerika 1963, wo sie Stewardess bei Pan American World Airways wurde.",
     basemapLight: "Helle Karte",
     basemapSatellite: "Satellit",
-    historicalOverlay: "Historische Namen (1930er–40er)",
+    historicalBorders: "Historische Grenzen",
     layers: "Ebenen"
   }
 };
